@@ -1,31 +1,41 @@
+-- TODO Set ball speed to be a fraction of paddle movement speed
+
 function love.load()
 	window = {}
-	window.x = love.graphics.getPixelWidth()
-	window.y = love.graphics.getPixelHeight()
+	window.w = love.graphics.getPixelWidth()
+	window.h = love.graphics.getPixelHeight()
 
 	net = {}
-	net.w = 10
-	net.h = window.y
-	net.x = (window.x - net.w) / 2
+	net.w = window.w / 80
+	net.h = window.h
+	net.x = (window.w - net.w) / 2
 	net.y = 0
 
+	paddle = {}
+	paddle.w = window.w / 80
+	paddle.h = window.h / 10
+	paddle.y = (window.h - paddle.h) / 2
+	paddle.dy = window.h / 40
+
 	player1 = {}
-	player1.w = 10
-	player1.h = 60
+	player1.w = paddle.w
+	player1.h = paddle.h
 	player1.x = 2 * player1.w
-	player1.y = (window.y - player1.h) / 2
+	player1.y = paddle.y
+	player1.dy = paddle.dy
 
 	player2 = {}
-	player2.w = 10
-	player2.h = 60
-	player2.x = window.x - (3 * player2.w)
-	player2.y = (window.y - player2.h) / 2
+	player2.w = paddle.w
+	player2.h = paddle.h
+	player2.x = window.w - (3 * player2.w)
+	player2.y = paddle.y
+	player2.dy = paddle.dy
 
 	ball = {}
-	ball.w = 10
-	ball.h = 10
-	ball.x = (window.x - ball.w) / 2
-	ball.y = window.y / 2
+	ball.w = window.w / 100
+	ball.h = ball.w
+	ball.x = (window.w - ball.w) / 2
+	ball.y = window.h / 2
 	ball.dx = 5
 	ball.dy = 3
 
@@ -33,21 +43,36 @@ function love.load()
 	sound_hit_high = love.audio.newSource("ball-hit.wav", "static")
 end
 
-function love.update(dt)
-	if love.keyboard.isDown("o") then
-		player1.y = player1.y - 15
-	end
-	if love.keyboard.isDown("p") then
-		player1.y = player1.y + 15
-	end
-
+function move_paddles()
 	if love.keyboard.isDown("q") then
-		player2.y = player2.y - 15
+		if player1.y > paddle.dy then
+			player1.y = player1.y - paddle.dy
+		end
 	end
 	if love.keyboard.isDown("w") then
-		player2.y = player2.y + 15
+		if player1.y < window.h - paddle.h - paddle.dy then
+			player1.y = player1.y + paddle.dy
+		end
 	end
 
+	if love.keyboard.isDown("o") then
+		if player2.y > paddle.dy then
+			player2.y = player2.y - paddle.dy
+		end
+	end
+	if love.keyboard.isDown("p") then
+		if player2.y < window.h - paddle.h - paddle.dy then
+			player2.y = player2.y + paddle.dy
+		end
+	end
+end
+
+function check_collisions()
+
+end
+
+function love.update(dt)
+	move_paddles()
 	ball.x = ball.x + ball.dx
 	ball.y = ball.y + ball.dy
 end
