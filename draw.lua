@@ -18,3 +18,8 @@ end
 function draw_ball()
 	love.graphics.rectangle("fill", ball.x, ball.y, ball.w, ball.h)
 end
+
+function draw_scores()
+	love.graphics.print(player1.score, net.x - 1.5 * font_size, 0.5 * paddle.h)
+	love.graphics.print(player2.score, net.x + font_size, 0.5 * paddle.h)
+end
