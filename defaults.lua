@@ -16,12 +16,12 @@ paddle.y = (window.h - paddle.h) / 2
 paddle.dy = window.h / 30
 
 function set_ball()
-	ball.w = window.w / 100
+	ball.w = window.w / 80
 	ball.h = ball.w
 	ball.x = (window.w - ball.w) / 2
 	ball.y = window.h / 2
-	ball.dx = 5
-	ball.dy = 3
+	ball.dx = window.h / 150
+	ball.dy = window.w / window.w
 end
 
 function set_net()
@@ -43,4 +43,9 @@ function set_players()
 	player2.x = window.w - (3 * player2.w)
 	player2.y = paddle.y
 	player2.dy = paddle.dy
+end
+
+function reset_score()
+player1.score = 0
+player2.score = 0
 end
