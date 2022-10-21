@@ -11,9 +11,9 @@ window.w = love.graphics.getPixelWidth()
 window.h = love.graphics.getPixelHeight()
 
 paddle.w = window.w / 80
-paddle.h = window.h / 10
+paddle.h = window.h / 7
 paddle.y = (window.h - paddle.h) / 2
-paddle.dy = window.h / 30
+paddle.dy = window.h / 50
 
 function set_ball()
 	ball.w = window.w / 80
@@ -21,7 +21,7 @@ function set_ball()
 	ball.x = (window.w - ball.w) / 2
 	ball.y = window.h / 2
 	ball.dx = window.h / 150
-	ball.dy = window.w / window.w
+	ball.dy = 2
 end
 
 function set_net()
@@ -32,12 +32,14 @@ function set_net()
 end
 
 function set_players()
+	-- Player 1 is on the left of the screen
 	player1.w = paddle.w
 	player1.h = paddle.h
 	player1.x = 2 * player1.w
 	player1.y = paddle.y
 	player1.dy = paddle.dy
 
+	-- Player 2 is on the right of the screen
 	player2.w = paddle.w
 	player2.h = paddle.h
 	player2.x = window.w - (3 * player2.w)
@@ -46,6 +48,11 @@ function set_players()
 end
 
 function reset_score()
-player1.score = 0
-player2.score = 0
+	player1.score = 0
+	player2.score = 0
+end
+
+function reset_game()
+	reset_score()
+	set_players()
 end
