@@ -16,6 +16,9 @@ end
 function love.update(dt)
 	move_paddles()
 	update_ball()
+	if player1.score >= 10 or player2.score >= 10 then
+		reset_game()
+	end
 end
 
 function love.draw()
