@@ -3,20 +3,20 @@ window.w = love.graphics.getPixelWidth()
 window.h = love.graphics.getPixelHeight()
 
 paddle = {}
-paddle.w = window.w / 80
-paddle.h = window.h / 7
+paddle.w = window.w / 60
+paddle.h = window.h / 8
 paddle.y = (window.h - paddle.h) / 2
 paddle.dy = window.h / 50
 
 ball = {}
 function set_ball()
 	ball_was_hit = false
-	ball.w = window.w / 80
+	ball.w = window.w / 70
 	ball.h = ball.w
 	ball.x = (window.w - ball.w) / 2
 	ball.y = window.h / 2
 	ball.dx = window.h / 150
-	ball.dy = math.random(-4, 4)
+	ball.dy = math.random(-3, 3)
 end
 
 net = {}
