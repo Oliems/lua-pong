@@ -1,16 +1,14 @@
-require 'defaults'
-require 'update'
-require 'draw'
+require 'src/defaults'
+require 'src/ball'
+require 'src/collisions'
+require 'src/interface'
+require 'src/paddle'
 
 function love.load()
-	set_ball()
-	set_net()
-	set_players()
-	reset_score()
-	sound_hit_low = love.audio.newSource("ball-hit.wav", "static")
-	sound_hit_high = love.audio.newSource("ball-hit.wav", "static")
+	initialize_game()
 	font_size = window.h / 10
-	love.graphics.setNewFont("gugi.ttf", font_size)
+	love.graphics.setNewFont("assets/gugi.ttf", font_size)
+	hit_sound = love.audio.newSource("assets/ball-hit.wav", "static")
 end
 
 function love.update(dt)
@@ -22,8 +20,5 @@ function love.update(dt)
 end
 
 function love.draw()
-	draw_net()
-	draw_paddles()
-	draw_ball()
-	draw_scores()
+	draw_interface()
 end

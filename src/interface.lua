@@ -23,3 +23,10 @@ function draw_scores()
 	love.graphics.print(player1.score, net.x - 1.5 * font_size, 0.5 * paddle.h)
 	love.graphics.print(player2.score, net.x + font_size, 0.5 * paddle.h)
 end
+
+function draw_interface()
+	draw_net()
+	draw_ball()
+	draw_scores()
+	draw_paddles()
+end

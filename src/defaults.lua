@@ -1,29 +1,25 @@
--- TODO Set ball speed to be a fraction of paddle movement speed
-
-player1 = {}
-player2 = {}
-paddle = {}
 window = {}
-ball = {}
-net = {}
-
 window.w = love.graphics.getPixelWidth()
 window.h = love.graphics.getPixelHeight()
 
+paddle = {}
 paddle.w = window.w / 80
 paddle.h = window.h / 7
 paddle.y = (window.h - paddle.h) / 2
 paddle.dy = window.h / 50
 
+ball = {}
 function set_ball()
+	ball_was_hit = false
 	ball.w = window.w / 80
 	ball.h = ball.w
 	ball.x = (window.w - ball.w) / 2
 	ball.y = window.h / 2
 	ball.dx = window.h / 150
-	ball.dy = 2
+	ball.dy = math.random(-4, 4)
 end
 
+net = {}
 function set_net()
 	net.w = window.w / 80
 	net.h = 2 * ball.w
@@ -31,6 +27,8 @@ function set_net()
 	net.y = 0
 end
 
+player1 = {}
+player2 = {}
 function set_players()
 	-- Player 1 is on the left of the screen
 	player1.w = paddle.w
@@ -52,7 +50,15 @@ function reset_score()
 	player2.score = 0
 end
 
-function reset_game()
-	reset_score()
+function initialize_game()
+	set_ball()
+	set_net()
 	set_players()
+	reset_score()
+end
+
+function reset_game()
+	set_ball()
+	set_players()
+	reset_score()
 end
