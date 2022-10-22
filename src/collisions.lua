@@ -9,37 +9,37 @@ end
 -- Determine where the ball hit the paddle so that the angle
 -- can be updated accordingly
 function hit_position(player, ball)
-	local hit_position = (player.y + player.h) - ball.h
-	if (hit_position >= 0 and hit_position < 7) then
-		ball.dy = ball.dy * hit_position
+	local hit_position = (player.y + player.h) - ball.y
+	local slice = player.h / 9
+	if (hit_position >= 0 and hit_position < slice) then
+		ball.dy = 6
 	end
-	if (hit_position >= 7 and hit_position < 14) then
-		ball.dy = ball.dy * hit_position
+	if (hit_position >= slice and hit_position < 2 * slice) then
+		ball.dy = 4
 	end
-	if (hit_position >= 14 and hit_position < 21) then
-		ball.dy = ball.dy * hit_position
+	if (hit_position >= 2 * slice and hit_position < 3 * slice) then
+		ball.dy = 2
 	end
-	if (hit_position >= 21 and hit_position < 28) then
-		ball.dy = ball.dy * hit_position
+	if (hit_position >= 3 * slice and hit_position < 4 * slice) then
+		ball.dy = 1
 	end
-	if (hit_position >= 28 and hit_position < 32) then
+	if (hit_position >= 4 * slice and hit_position < 5 * slice) then
 		ball.dy = 0
 	end
-	if (hit_position >= 32 and hit_position < 39) then
-		ball.dy = ball.dy * hit_position
+	if (hit_position >= 5 * slice and hit_position < 6 * slice) then
+		ball.dy = -1
 	end
-	if (hit_position >= 39 and hit_position < 46) then
-		ball.dy = ball.dy * hit_position
+	if (hit_position >= 6 * slice and hit_position < 7 * slice) then
+		ball.dy = -2
 	end
-	if (hit_position >= 46 and hit_position < 53) then
-		ball.dy = ball.dy * hit_position
+	if (hit_position >= 7 * slice and hit_position < 8 * slice) then
+		ball.dy = -4
 	end
-	if (hit_position >= 53 and hit_position <= 60) then
-		ball.dy = ball.dy * hit_position
+	if (hit_position >= 8 * slice and hit_position <= 9 * slice) then
+		ball.dy = -6
 	end
 end
 
--- TODO Teleport the ball to avoid multi-collision bug
 -- Check for a collision between the ball and the paddle and update the ball
 -- direction accordingly
 function ball_paddle_collision(player, ball)
@@ -52,12 +52,27 @@ function ball_paddle_collision(player, ball)
 			ball.dx = -ball.dx
 		end
 		love.audio.play(hit_sound)
+		hit_position(player, ball)
+		teleport_ball()
+	end
+end
+
+-- Teleport the ball to avoid multiple collisions
+function teleport_ball()
+	if ball.dx > 0 then
+		if (ball.x < player1.x) then
+			ball.x = player1.x + player1.w
+		end
+	else
+		if ball.x > player2.x then
+			ball.x = player2.x - player2.w
+		end
 	end
 end
 
 -- Make the ball bounce on the top and bottom parts of the window
 function ball_hit_wall()
-	if ball.y < 0 or ball.y > window.h - ball.w then
+	if ball.y <= 0 or ball.y >= window.h - ball.w then
 		ball.dy = -ball.dy
 	end
 end
