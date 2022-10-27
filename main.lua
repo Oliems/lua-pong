@@ -29,7 +29,7 @@ function love.update(dt)
 end
 
 function love.keypressed(key)
-	if key == 'g' then pause = not pause end
+	if key == 'space' then pause = not pause end
 end
 
 function love.draw()

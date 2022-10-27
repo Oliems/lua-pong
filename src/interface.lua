@@ -27,7 +27,7 @@ end
 
 function draw_pause_menu()
 	love.graphics.setFont(font_small)
-	love.graphics.print("Press 'g' to continue", window.w / 100, window.h - 1.5 * font_small_size)
+	love.graphics.print("Press Space to continue", window.w / 100, window.h - 1.5 * font_small_size)
 end
 
 function draw_interface()
