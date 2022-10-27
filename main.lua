@@ -8,7 +8,8 @@ function love.load()
 	initialize_game()
 	font_size = window.h / 10
 	love.graphics.setNewFont("assets/gugi.ttf", font_size)
-	hit_sound = love.audio.newSource("assets/ball-hit.wav", "static")
+	hit_paddle = love.audio.newSource("assets/hit_paddle.wav", "static")
+	hit_table = love.audio.newSource("assets/hit_table.wav", "static")
 end
 
 function love.update(dt)

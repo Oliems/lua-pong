@@ -6,7 +6,7 @@ paddle = {}
 paddle.w = window.w / 60
 paddle.h = window.h / 8
 paddle.y = (window.h - paddle.h) / 2
-paddle.dy = window.h / 50
+paddle.dy = window.h / 40
 
 ball = {}
 function set_ball()
@@ -16,7 +16,7 @@ function set_ball()
 	ball.x = (window.w - ball.w) / 2
 	ball.y = window.h / 2
 	ball.dx = window.h / 150
-	ball.dy = math.random(-3, 3)
+	ball.dy = math.random(-2.5, 2.5)
 end
 
 net = {}

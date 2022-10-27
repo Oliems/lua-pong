@@ -32,7 +32,7 @@ function ball_paddle_collision(player, ball)
 		else
 			ball.dx = -ball.dx
 		end
-		love.audio.play(hit_sound)
+		love.audio.play(hit_paddle)
 		hit_position(player, ball)
 		teleport_ball()
 	end
@@ -52,8 +52,10 @@ function teleport_ball()
 end
 
 -- Make the ball bounce on the top and bottom parts of the window
+-- TODO Add a bit of randomness to the bouncing
 function ball_hit_wall()
 	if ball.y <= 0 or ball.y >= window.h - ball.w then
 		ball.dy = -ball.dy
+		love.audio.play(hit_table)
 	end
 end
