@@ -15,7 +15,8 @@ function hit_position(player, ball)
 	local dy = math.floor(precision / 2)
 	for i = 0, precision + 1, 1 do
 		if (hit_position >= i * slice and hit_position < (i + 1) * slice) then
-			ball.dy = dy
+			-- Add some randomness to spice up the game a bit
+			ball.dy = dy + math.random(0.1, 0.5)
 		end
 		dy = dy - 1
 	end
@@ -53,8 +54,13 @@ end
 
 -- Make the ball bounce on the top and bottom parts of the window
 function ball_hit_wall()
-	if ball.y <= 0 or ball.y >= window.h - ball.w then
-		ball.dy = -ball.dy
+	-- Revert the direction of the ball and add some randomness
+	if ball.y <= 0 then
+		ball.dy = -ball.dy + math.random(0, 1)
+		love.audio.play(hit_table)
+	end
+	if ball.y >= window.h - ball.w then
+		ball.dy = -ball.dy - math.random(0, 1)
 		love.audio.play(hit_table)
 	end
 end
