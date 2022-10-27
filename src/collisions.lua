@@ -9,34 +9,15 @@ end
 -- Determine where the ball hit the paddle so that the angle
 -- can be updated accordingly
 function hit_position(player, ball)
+	local precision = 20
+	local slice = player.h / precision
 	local hit_position = (player.y + player.h) - ball.y
-	local slice = player.h / 9
-	if (hit_position >= 0 and hit_position < slice) then
-		ball.dy = 6
-	end
-	if (hit_position >= slice and hit_position < 2 * slice) then
-		ball.dy = 4
-	end
-	if (hit_position >= 2 * slice and hit_position < 3 * slice) then
-		ball.dy = 2
-	end
-	if (hit_position >= 3 * slice and hit_position < 4 * slice) then
-		ball.dy = 1
-	end
-	if (hit_position >= 4 * slice and hit_position < 5 * slice) then
-		ball.dy = 0
-	end
-	if (hit_position >= 5 * slice and hit_position < 6 * slice) then
-		ball.dy = -1
-	end
-	if (hit_position >= 6 * slice and hit_position < 7 * slice) then
-		ball.dy = -2
-	end
-	if (hit_position >= 7 * slice and hit_position < 8 * slice) then
-		ball.dy = -4
-	end
-	if (hit_position >= 8 * slice and hit_position <= 9 * slice) then
-		ball.dy = -6
+	local dy = math.floor(precision / 2)
+	for i = 0, precision + 1, 1 do
+		if (hit_position >= i * slice and hit_position < (i + 1) * slice) then
+			ball.dy = dy
+		end
+		dy = dy - 1
 	end
 end
 
