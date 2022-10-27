@@ -27,7 +27,7 @@ function ball_paddle_collision(player, ball)
 	if check_hitbox(player.x, player.y, player.w, player.h,
 		ball.x, ball.y, ball.w, ball.h) then
 		if ball_was_hit == false then
-			ball.dx = -ball.dx * 2.5
+			ball.dx = -ball.dx * 3
 			ball_was_hit = true
 		else
 			ball.dx = -ball.dx
@@ -52,7 +52,6 @@ function teleport_ball()
 end
 
 -- Make the ball bounce on the top and bottom parts of the window
--- TODO Add a bit of randomness to the bouncing
 function ball_hit_wall()
 	if ball.y <= 0 or ball.y >= window.h - ball.w then
 		ball.dy = -ball.dy
