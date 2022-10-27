@@ -1,3 +1,5 @@
+pause = false
+
 window = {}
 window.w = love.graphics.getPixelWidth()
 window.h = love.graphics.getPixelHeight()

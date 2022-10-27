@@ -20,8 +20,14 @@ function draw_ball()
 end
 
 function draw_scores()
-	love.graphics.print(player1.score, net.x - 1.5 * font_size, 0.5 * paddle.h)
-	love.graphics.print(player2.score, net.x + font_size, 0.5 * paddle.h)
+	love.graphics.setFont(font_regular)
+	love.graphics.print(player1.score, net.x - 1.5 * font_regular_size, 0.5 * paddle.h)
+	love.graphics.print(player2.score, net.x + font_regular_size, 0.5 * paddle.h)
+end
+
+function draw_pause_menu()
+	love.graphics.setFont(font_small)
+	love.graphics.print("Press 'g' to continue", window.w / 100, window.h - 1.5 * font_small_size)
 end
 
 function draw_interface()
@@ -29,4 +35,5 @@ function draw_interface()
 	draw_ball()
 	draw_scores()
 	draw_paddles()
+	if pause then draw_pause_menu() return end
 end
