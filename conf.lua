@@ -11,22 +11,22 @@ function love.conf(t)
     t.window.vsync = 1                  -- Vertical sync mode (number)
 
 	-- Modules
-    t.modules.audio = true              -- Enable the audio module (boolean)
-    t.modules.data = true               -- Enable the data module (boolean)
-    t.modules.event = true              -- Enable the event module (boolean)
-    t.modules.font = true               -- Enable the font module (boolean)
-    t.modules.graphics = true           -- Enable the graphics module (boolean)
-    t.modules.image = true              -- Enable the image module (boolean)
-    t.modules.joystick = false         	-- Enable the joystick module (boolean)
-    t.modules.keyboard = true           -- Enable the keyboard module (boolean)
-    t.modules.math = true               -- Enable the math module (boolean)
-    t.modules.mouse = true              -- Enable the mouse module (boolean)
-    t.modules.physics = false           -- Enable the physics module (boolean)
-    t.modules.sound = true              -- Enable the sound module (boolean)
-    t.modules.system = false             -- Enable the system module (boolean)
-    t.modules.thread = false            -- Enable the thread module (boolean)
-    t.modules.timer = true              -- Enable the timer module (boolean), Disabling it will result 0 delta time in love.update
-    t.modules.touch = false              -- Enable the touch module (boolean)
-    t.modules.video = true              -- Enable the video module (boolean)
-    t.modules.window = true             -- Enable the window module (boolean)
+    t.modules.audio = true
+    t.modules.data = true
+    t.modules.event = true
+    t.modules.font = true
+    t.modules.graphics = true
+    t.modules.image = true
+    t.modules.joystick = false
+    t.modules.keyboard = true
+    t.modules.math = true
+    t.modules.mouse = true
+    t.modules.physics = false
+    t.modules.sound = true
+    t.modules.system = false
+    t.modules.thread = false
+    t.modules.timer = true              -- Disabling this module will result in 0 delta time in love.update()
+    t.modules.touch = false
+    t.modules.video = true
+    t.modules.window = true
 end
